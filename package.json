@@ -1,0 +1,32 @@
+{
+  "name": "header-app-tester",
+  "version": "1.0.0",
+  "description": "For testing apps protected with header-based authentication",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "nodemon ./start.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sudobinbash/header-app-tester.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sudobinbash/header-app-tester/issues"
+  },
+  "homepage": "https://github.com/sudobinbash/header-app-tester#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-validator": "^6.0.1",
+    "pug": "^2.0.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  },
+  "engines": {
+    "node": "v12.4.0"
+  }
+}

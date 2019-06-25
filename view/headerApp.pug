@@ -1,0 +1,40 @@
+extends layout
+
+block headers
+  table.table
+    thead
+      tr
+        th #
+        th Header
+        th Description
+        th Value
+    tbody
+      if attributes
+        each attribute in attributes
+          if req.headers[attribute.id]
+            tr.table-success
+              td: i.material-icons check_circle
+              td #{attribute.id}
+              td #{attribute.description}
+              td #{req.headers[attribute.id]}
+          else
+            tr.table-danger
+              td: i.material-icons error
+              td #{attribute.id}
+              td #{attribute.description}
+              td #{req.headers[attribute.id]}
+block raw
+  h3 URL:
+  p
+    code #{req.protocol}://#{req.get('host')}#{req.originalUrl}
+  h3 Headers:
+  p
+    code #{JSON.stringify(req.headers, null, '\t')}
+  if errors
+    h3 Error:
+    p
+      code #{JSON.stringify(errors, null, '\t')}
+  if attributes
+    h3 Expected Attributes:
+    p
+      code #{JSON.stringify(attributes, null, '\t')}

@@ -1,0 +1,7 @@
+{
+  "name": "Header App Tester",
+  "description": "A Node.js app used for testing header-based authentication",
+  "repository": "https://github.com/sudobinbash/header-app-tester",
+  "logo": "https://www.okta.com/sites/all/themes/Okta/images/logos/developer/Dev_Logo-03_White_Large.png",
+  "keywords": ["node", "express", "okta", "sample"]
+}
