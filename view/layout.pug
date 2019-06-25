@@ -20,11 +20,12 @@ html
                 li.nav-item.dropdown
                   a#navbarDropdownMenuLink.nav-link.dropdown-toggle(href='http://example.com', data-toggle='dropdown') Other apps
                   .dropdown-menu.dropdown-menu-right(aria-labelledby='navbarDropdownMenuLink')
-                    a.dropdown-item(href='#') Iterate
-                    a.dropdown-item(href='#') With routers
-                    a.dropdown-item(href='#') To other apps
+                    a.dropdown-item(href='/') Index
+                    a.dropdown-item(href='/sample') Header-Based App
+                    a.dropdown-item(href='/apex') Oracle APEX
+                    a.dropdown-item(href='/weblogic') Oracle Weblogic
                     .dropdown-divider
-                    a.dropdown-item(href='#') Github
+                    a.dropdown-item(href='./spgwLogout') Sign-Out
       .row
         .col-md-12
           .jumbotron
@@ -32,7 +33,7 @@ html
             p #{description}
             if doc
               p
-                a.btn.btn-primary.btn-large(href=`${doc}`) Learn more
+                a.btn.btn-primary.btn-large(href=`${doc}`, target="_doc") Learn more
       .row
         .col-md-12
           ul#pills-tab.nav.nav-pills.nav-justified.mb-3(role='tablist')

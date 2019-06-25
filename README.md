@@ -6,8 +6,9 @@ For testing apps protected with header-based authentication
 
 ## Samples currently supported
 
-- Standard Sample Application
+- Header-Based App
 - Oracle Application Express (APEX)
+- Oracle WebLogic Server
 
 ## How to extend the tester with more samples
 
