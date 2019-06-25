@@ -4,14 +4,14 @@ const { header, validationResult } = require('express-validator');
 
 var attributes = [
     {"id":"oam_remote_user","description":"User id expected from APEX. Typically a database user id, like SYS"},
-    {"id":"oam_remote_email","description":"User email expected from APEX."},
-    {"id":"oam_remote_groups","description":"User groups separated by collon (:), typically taken from the LDAP or AD"},
+    {"id":"oam_remote_user_email","description":"User email expected from APEX."},
+    {"id":"oam_remote_user_groups","description":"User groups separated by collon (:), typically taken from the LDAP or AD"},
   ];
 
 router.get('/apex',[
     header('oam_remote_user').not().isEmpty(),
-    header('oam_remote_email').isEmail(),
-    header('oam_remote_groups').not().isEmpty(),
+    header('oam_remote_user_email').isEmail(),
+    header('oam_remote_user_groups').not().isEmpty(),
   ], (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -32,8 +32,8 @@ router.get('/apex',[
 
 router.get('/*',[
   header('oam_remote_user').not().isEmpty(),
-  header('oam_remote_email').isEmail(),
-  header('oam_remote_groups').not().isEmpty(),
+  header('oam_remote_user_email').isEmail(),
+  header('oam_remote_user_groups').not().isEmpty(),
 ], (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
