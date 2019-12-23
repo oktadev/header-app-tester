@@ -4,7 +4,7 @@ const { header, validationResult } = require('express-validator');
 
 var attributes = [
     {"id":"iv-user","description":"User id sent by WebSeal to backend apps. It can be a generic user id or an email"},
-    {"id":"iv-groups","description":"User groups separated by comma (,), typically from an LDAP or AD store"},
+    {"id":"iv-groups","description":"User groups separated by comma (,) and quoted )(i.e. \"admin\",\"end-user\").  typically from an LDAP or AD store"},
   ];
 
 router.get('/',[

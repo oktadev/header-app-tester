@@ -12,7 +12,7 @@ jQuery(function($) {
     //changes template if needed
     $('body').on('click', '.change-style-menu-item', function() {
       var theme_name = $(this).attr('rel');
-      var theme = "css/" + theme_name + ".css";
+      var theme = "/css/" + theme_name + ".css";
       set_theme(theme);
     });
 });
