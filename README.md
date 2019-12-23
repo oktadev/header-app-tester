@@ -9,6 +9,7 @@ For testing apps protected with header-based authentication
 - Header-Based App
 - Oracle Application Express (APEX)
 - Oracle WebLogic Server
+- IBM WebSeal
 
 ## How to extend the tester with more samples
 
