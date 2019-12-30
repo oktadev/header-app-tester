@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { header, validationResult } = require('express-validator');
 
-var attributes = [
+const attributes = [
     {"id":"email","description":"User email"},
     {"id":"first_name","description":"First Name"},
     {"id":"last_name","description":"First Name"},
@@ -10,80 +10,33 @@ var attributes = [
     {"id":"host","description":"Application Host"},
   ];
 
-router.get('/',[
-    header('email').isEmail(),
-    header('first_name').not().isEmpty(),
-    header('last_name').not().isEmpty(),
-    header('groups').not().isEmpty(),
-    header('host').not().isEmpty(),
-  ], (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      console.log(JSON.stringify(errors.array()));
-    }
+const title = 'Sample Application';
+const description = 'This pseudo sample application is used for education purposes. It expects several different attributes';
+const doc = 'https://www.okta.com';
 
-    res.render('headerApp', 
-     {
-        title: 'Sample Application',
-        description: 'The Sample Application is from Oracle. It expects a bunch of stuff',
-        doc: 'https://www.okta.com',
-        req: req,
-        attributes: attributes,
-        errors: { errors: errors.array() },
-     }
-    );
+let urls = new Map([['/', 'Index'],['/admin', 'Admin Interface'],['/protected', 'Protected Page']]);
+
+router.get(Array.from(urls.keys()),[
+  header('email').isEmail(),
+  header('first_name').not().isEmpty(),
+  header('last_name').not().isEmpty(),
+  header('groups').not().isEmpty(),
+  header('host').not().isEmpty(),
+], (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    console.log(JSON.stringify(errors.array()));
+  }
+
+  res.render('headerApp', 
+   {
+    title: title +' - '+ urls.get(req.url),
+    description: description,
+    req: req,
+    attributes: attributes,
+    errors: { errors: errors.array() },
+   }
+  );
 });
-
-router.get('/admin',[
-    header('email').isEmail(),
-    header('first_name').not().isEmpty(),
-    header('last_name').not().isEmpty(),
-    header('groups').not().isEmpty(),
-    header('host').not().isEmpty(),
-  ], (req, res) => {
-        
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      console.log(JSON.stringify(errors.array()));
-    }
-
-    res.render('headerApp', 
-     {
-        title: 'Sample Application - Admin Interface',
-        description: 'The Sample Application is from Oracle. It expects a bunch of stuff',
-        doc: 'https://www.okta.com',
-        req: req,
-        attributes: attributes,
-        errors: { errors: errors.array() },
-     }
-    );
-});
-
-router.get('/protected',[
-    header('email').isEmail(),
-    header('first_name').not().isEmpty(),
-    header('last_name').not().isEmpty(),
-    header('groups').not().isEmpty(),
-    header('host').not().isEmpty(),
-  ], (req, res) => {
-        
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      console.log(JSON.stringify(errors.array()));
-    }
-
-    res.render('headerApp', 
-     {
-        title: 'Sample Application - Protected page',
-        description: 'The Sample Application is from Oracle. It expects a bunch of stuff',
-        doc: 'https://www.okta.com',
-        req: req,
-        attributes: attributes,
-        errors: { errors: errors.array() },
-     }
-    );
-});
-
-
 
 module.exports = router;
