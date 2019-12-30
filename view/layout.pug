@@ -33,6 +33,11 @@ html
                     a.dropdown-item(href='/apex') Oracle APEX
                     a.dropdown-item(href='/weblogic') Oracle Weblogic
                     a.dropdown-item(href='/webseal') IBM WebSeal
+                    a.dropdown-item(href='/psft/crm') Oracle PeopleSoft CRM
+                    a.dropdown-item(href='/psft/hcm') Oracle PeopleSoft HCM
+                    a.dropdown-item(href='/psft/elm') Oracle PeopleSoft E-Learning
+                    a.dropdown-item(href='/psft/fscm') Oracle PeopleSoft Financial
+                    a.dropdown-item(href='/psft/camp') Oracle PeopleSoft Campus
                     .dropdown-divider
                     a.dropdown-item(href='./spgwLogout') Sign-Out
       .row
@@ -43,6 +48,7 @@ html
             if doc
               p
                 a.btn.btn-primary.btn-large(href=`${doc}`, target="_doc") Learn more
+      hr
       .row
         .col-md-12
           ul#pills-tab.nav.nav-pills.nav-justified.mb-3(role='tablist')
