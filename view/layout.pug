@@ -57,11 +57,17 @@ html
               a#pills-home-tab.nav-item.nav-link.active(data-toggle='pill', href='#pills-home', role='tab', aria-controls='pills-home', aria-selected='true') Headers
             li.nav-item
               a#pills-profile-tab.nav-item.nav-link(data-toggle='pill', href='#pills-profile', role='tab', aria-controls='pills-profile', aria-selected='false') Raw
+            if deviceState
+              li.nav-item
+                a#pills-profile-tab.nav-item.nav-link(data-toggle='pill', href='#pills-access', role='tab', aria-controls='pills-access', aria-selected='false') Access
           #pills-tabContent.tab-content
             #pills-home.tab-pane.fade.show.active(role='tabpanel', aria-labelledby='pills-home-tab')
               block headers
             #pills-profile.tab-pane.fade(role='tabpanel', aria-labelledby='pills-profile-tab')
               block raw
+            if deviceState
+              #pills-access.tab-pane.fade(role='tabpanel', aria-labelledby='pills-access-tab')
+                block sensitiveInfo
     script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', crossorigin='anonymous')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js', integrity='sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49', crossorigin='anonymous')
     script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous")

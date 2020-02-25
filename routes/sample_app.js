@@ -41,4 +41,31 @@ router.get(Array.from(urls.keys()),[
   );
 });
 
+let info = new Map([['/info', 'Sensitive Info']]);
+
+router.get(Array.from(info.keys()),[
+  header('email').isEmail(),
+  header('first_name').not().isEmpty(),
+  header('last_name').not().isEmpty(),
+  header('device').not().isEmpty(),
+  header('groups').not().isEmpty(),
+  header('host').not().isEmpty(),
+], (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    console.log(JSON.stringify(errors.array()));
+  }
+
+  res.render('deviceApp', 
+   {
+    title: title +' - '+ info.get(req.url),
+    description: description,
+    req: req,
+    attributes: attributes,
+    deviceState: req.header('device'),
+    errors: { errors: errors.array() },
+   }
+  );
+});
+
 module.exports = router;
