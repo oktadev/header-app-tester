@@ -1,0 +1,99 @@
+extends layout
+
+block headers
+  br
+  .container
+    .row(class='justify-content-center')
+      .col-md-6
+        .card
+          if (req.get('device') == 'TRUSTED')
+            .card-body
+              h5.card-title Access Unauthorized
+              p.card-text You don't have authorization to check this resource
+              a.btn.btn-primary(type='button' href='javascript:history.back()') Go Back
+          else
+            .card-body
+              h5.card-title Your device is not trusted
+              h6.card-subtitle.mb-2.text-muted Unknown or Non-Trusted devices
+              p.card-text You cannot access privileged resouces because your device is not trusted. But you can fix this :)
+              button.btn.btn-primary(type='button' data-toggle='modal' data-target='#myModalFixDevice') Let's enroll my device
+    #myModalFixDevice.modal.fade(role='dialog')
+      .modal-dialog
+        // Modal content
+        .modal-content
+          .modal-header
+            h4.modal-title Access Unauthorized
+            button.close(type='button' data-dismiss='modal') &times;
+          .modal-body
+            div.alert.alert-warning 
+              p Your device is not managed. To get access:
+              a(href='https://oktadev4.jamfcloud.com/enroll' target='jamf_pro') Click here to enroll your device in JAMF
+              hr
+              p For details, check this video:
+              div.embed-responsive.embed-responsive-16by9
+                iframe.embed-responsive-item(src="https://www.youtube.com/embed/zo_VNjLGSwQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
+          .modal-footer
+            button.btn.btn-default(type='button' data-dismiss='modal') Close
+block raw
+  h3 URL:
+  p
+    code #{req.protocol}://#{req.get('host')}#{req.originalUrl}
+  h3 Headers:
+  p
+    code #{JSON.stringify(req.headers, null, '\t')}
+  if errors
+    h3 Error:
+    p
+      code #{JSON.stringify(errors, null, '\t')}
+  if attributes
+    h3 Expected Attributes:
+    p
+      code #{JSON.stringify(attributes, null, '\t')}
+
+block sensitiveInfo
+  h3 Device State: #{req.get('device')}
+  .container
+    .row
+      .col-md-6
+        .card
+          .card-body
+            h5.card-title Non-Sensitive Information
+            h6.card-subtitle.mb-2.text-muted Unknown or Non-Trusted devices
+            p.card-text Information available regardless of the device state.
+            button.btn.btn-primary(type='button' data-toggle='modal' data-target='#myModal') Non-Sensitive Information
+      .col-md-6
+        .card
+          .card-body
+            h5.card-title Ultra Sensitive Information
+            h6.card-subtitle.mb-2.text-muted Only available for trusted devices
+            p.card-text This top-secret information is available only for devices we trust.
+            if (req.get('device') == 'TRUSTED')
+              button.btn.btn-primary(type='button' data-toggle='modal' data-target='#myModalSecret') Ultra-Sensitive Information
+            else
+              button.btn.btn-primary(type='button' data-toggle='modal' data-target='#myModalSecret' disabled='') Not Available
+    #myModal.modal.fade(role='dialog')
+      .modal-dialog
+        // Modal content
+        .modal-content
+          .modal-header
+            h4.modal-title Non-Sensitive
+            button.close(type='button' data-dismiss='modal') &times;
+          .modal-body
+            p Life is awesome!
+          .modal-footer
+            button.btn.btn-default(type='button' data-dismiss='modal') Close
+    #myModalSecret.modal.fade(role='dialog')
+      .modal-dialog
+        // Modal content
+        .modal-content
+          .modal-header
+            h4.modal-title Ultra Sensitive
+            button.close(type='button' data-dismiss='modal') &times;
+          .modal-body
+            p Life is awesome if you save money!
+          .modal-footer
+            button.btn.btn-default(type='button' data-dismiss='modal') Close
+
+block loadModal
+  if (req.get('device') != 'TRUSTED')
+    script(src='/js/loadModal.js')

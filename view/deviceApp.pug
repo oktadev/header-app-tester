@@ -1,0 +1,84 @@
+extends layout
+
+block headers
+  table.table
+    thead
+      tr
+        th #
+        th Header
+        th Description
+        th Value
+    tbody
+      if attributes
+        each attribute in attributes
+          if req.headers[attribute.id]
+            tr.table-success
+              td: i.material-icons check_circle
+              td #{attribute.id}
+              td #{attribute.description}
+              td #{req.headers[attribute.id]}
+          else
+            tr.table-danger
+              td: i.material-icons warning
+              td #{attribute.id}
+              td #{attribute.description}
+              td #{req.headers[attribute.id]}
+block raw
+  h3 URL:
+  p
+    code #{req.protocol}://#{req.get('host')}#{req.originalUrl}
+  h3 Headers:
+  p
+    code #{JSON.stringify(req.headers, null, '\t')}
+  if errors
+    h3 Error:
+    p
+      code #{JSON.stringify(errors, null, '\t')}
+  if attributes
+    h3 Expected Attributes:
+    p
+      code #{JSON.stringify(attributes, null, '\t')}
+
+block sensitiveInfo
+  h3 Device State: #{req.get('device')}
+  .container
+    .row
+      .col-md-6
+        .card
+          .card-body
+            h5.card-title Non-Sensitive Information
+            h6.card-subtitle.mb-2.text-muted Unknown or Non-Trusted devices
+            p.card-text Information available regardless of the device state.
+            button.btn.btn-primary(type='button' data-toggle='modal' data-target='#myModal') Non-Sensitive Information
+      .col-md-6
+        .card
+          .card-body
+            h5.card-title Ultra Sensitive Information
+            h6.card-subtitle.mb-2.text-muted Only available for trusted devices
+            p.card-text This top-secret information is available only for devices we trust.
+            if (req.get('device') == 'TRUSTED')
+              button.btn.btn-primary(type='button' data-toggle='modal' data-target='#myModalSecret') Ultra-Sensitive Information
+            else
+              button.btn.btn-primary(type='button' data-toggle='modal' data-target='#myModalSecret' disabled='') Not Available
+    #myModal.modal.fade(role='dialog')
+      .modal-dialog
+        // Modal content
+        .modal-content
+          .modal-header
+            h4.modal-title Non-Sensitive
+            button.close(type='button' data-dismiss='modal') &times;
+          .modal-body
+            p Life is awesome!
+          .modal-footer
+            button.btn.btn-default(type='button' data-dismiss='modal') Close
+    #myModalSecret.modal.fade(role='dialog')
+      .modal-dialog
+        // Modal content
+        .modal-content
+          .modal-header
+            h4.modal-title Ultra Sensitive
+            button.close(type='button' data-dismiss='modal') &times;
+          .modal-body
+            p Life is awesome if you save money!
+          .modal-footer
+            button.btn.btn-default(type='button' data-dismiss='modal') Close
