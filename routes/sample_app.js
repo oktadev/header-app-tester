@@ -71,4 +71,32 @@ router.get(Array.from(info.keys()),[
   );
 });
 
+let error = new Map([['/error', 'Authorization Error']]);
+
+router.get(Array.from(error.keys()),[
+  header('email').isEmail(),
+  header('first_name').not().isEmpty(),
+  header('last_name').not().isEmpty(),
+  header('device').not().isEmpty(),
+  header('amr').not().isEmpty(),
+  header('groups').not().isEmpty(),
+  header('host').not().isEmpty(),
+], (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    console.log(JSON.stringify(errors.array()));
+  }
+
+  res.render('authzError', 
+   {
+    title: title +' - '+ error.get(req.url),
+    description: description,
+    req: req,
+    attributes: attributes,
+    deviceState: req.header('device'),
+    errors: { errors: errors.array() },
+   }
+  );
+});
+
 module.exports = router;

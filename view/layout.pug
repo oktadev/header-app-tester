@@ -54,7 +54,7 @@ html
         .col-md-12
           ul#pills-tab.nav.nav-pills.nav-justified.mb-3(role='tablist')
             li.nav-item
-              a#pills-home-tab.nav-item.nav-link.active(data-toggle='pill', href='#pills-home', role='tab', aria-controls='pills-home', aria-selected='true') Headers
+              a#pills-home-tab.nav-item.nav-link.active(data-toggle='pill', href='#pills-home', role='tab', aria-controls='pills-home', aria-selected='true') Details
             li.nav-item
               a#pills-profile-tab.nav-item.nav-link(data-toggle='pill', href='#pills-profile', role='tab', aria-controls='pills-profile', aria-selected='false') Raw
             if deviceState
@@ -72,3 +72,4 @@ html
     script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js', integrity='sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49', crossorigin='anonymous')
     script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous")
     script(src="/js/style.js")
+    block loadModal
