@@ -7,6 +7,7 @@ const attributes = [
     {"id":"first_name","description":"First Name"},
     {"id":"last_name","description":"First Name"},
     {"id":"device","description":"Device State"},
+    {"id":"amr","description":"Authentication Context"},
     {"id":"groups","description":"User groups separated by collon (:), typically taken from the LDAP or AD"},
     {"id":"host","description":"Application Host"},
   ];
@@ -22,6 +23,7 @@ router.get(Array.from(urls.keys()),[
   header('first_name').not().isEmpty(),
   header('last_name').not().isEmpty(),
   header('device').not().isEmpty(),
+  header('amr').not().isEmpty(),
   header('groups').not().isEmpty(),
   header('host').not().isEmpty(),
 ], (req, res) => {
@@ -48,6 +50,7 @@ router.get(Array.from(info.keys()),[
   header('first_name').not().isEmpty(),
   header('last_name').not().isEmpty(),
   header('device').not().isEmpty(),
+  header('amr').not().isEmpty(),
   header('groups').not().isEmpty(),
   header('host').not().isEmpty(),
 ], (req, res) => {
