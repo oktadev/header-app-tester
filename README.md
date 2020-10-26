@@ -65,7 +65,7 @@ docker pull fhakamine/header-app-tester
 docker run -p 3000:3000 -d fhakamine/header-app-tester
 ```
 
-After deployment, your app will be available at `https://localhost:3000`.
+After deployment, your app will be available at `http://localhost:3000`.
 
 By the way, For more info about the Docker repo for this app, click any of these links 🙂 : 
 
@@ -86,7 +86,7 @@ npm install
 node start.js
 ```
 
-After deployment, your app will be available at `https://localhost:3000`.
+After deployment, your app will be available at `http://localhost:3000`.
 
 # 5. How to improve this app with more samples?
 
