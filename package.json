@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/sudobinbash/header-app-tester#readme",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "express-validator": "^6.3.0",
     "pug": "^2.0.4"
   },
